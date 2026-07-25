@@ -112,47 +112,6 @@
     z-index:6;
   }
 
-  /* god-rays radiating from the center button: each ray is an individual
-     stroke with its own randomized length that glows in and out on its own
-     timer, so the burst never looks uniform or fixed. */
-  .hero-rays{
-    position:absolute;
-    left:49.5vw;
-    top:11.65vw;
-    width:0;
-    height:0;
-    pointer-events:none;
-  }
-  .hero-rays .ray{
-    position:absolute;
-    left:0;
-    top:0;
-    transform-origin: 0 0;
-    border-radius:999px;
-    background: linear-gradient(to bottom,
-      rgba(255,255,255,0.65) 0%,
-      rgba(255,255,255,0.18) 55%,
-      rgba(255,255,255,0) 100%);
-    mix-blend-mode: screen;
-    filter: blur(0.15vw);
-    animation-name: ray-glow;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-  }
-
-  @keyframes ray-glow{
-    0%, 100%{ transform: rotate(var(--ray-angle)) scaleY(var(--ray-min)); opacity: 0.3; }
-    50%{ transform: rotate(var(--ray-angle)) scaleY(1); opacity: 0.8; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .hero-rays .ray{
-      animation: none;
-      transform: rotate(var(--ray-angle)) scaleY(0.8);
-      opacity: 0.5;
-    }
-  }
-
   .glow-btn{
     position:absolute;
     border-radius:50%;
@@ -167,29 +126,29 @@
     animation: none;
     transform: scale(1.06);
     box-shadow:
-      0 0 1.29vw 0.36vw rgba(255,255,255,0.72),
-      0 0 3vw 0.86vw rgba(170,190,255,0.32),
+      0 0 0.71vw 0.20vw rgba(255,255,255,0.40),
+      0 0 1.65vw 0.47vw rgba(170,190,255,0.18),
       inset 0 -0.85vw 1.3vw rgba(0,0,0,0.8),
       inset 0 0.28vw 0.45vw rgba(255,255,255,0.45),
-      inset 0 0 1.6vw 0.4vw rgba(200,215,255,0.55);
+      inset 0 0 0.88vw 0.22vw rgba(200,215,255,0.30);
   }
 
   @keyframes button-glow-pulse{
     0%, 100%{
       box-shadow:
-        0 0 1vw 0.25vw rgba(230,235,255,0.64),
-        0 0 2.29vw 0.64vw rgba(160,180,240,0.23),
+        0 0 0.55vw 0.14vw rgba(230,235,255,0.35),
+        0 0 1.26vw 0.35vw rgba(160,180,240,0.13),
         inset 0 -0.75vw 1.2vw rgba(0,0,0,0.75),
         inset 0 0.28vw 0.45vw rgba(255,255,255,0.4),
-        inset 0 0 1.2vw 0.3vw rgba(180,200,255,0.35);
+        inset 0 0 0.66vw 0.17vw rgba(180,200,255,0.19);
     }
     50%{
       box-shadow:
-        0 0 1.29vw 0.36vw rgba(255,255,255,0.85),
-        0 0 3vw 0.86vw rgba(180,200,255,0.34),
+        0 0 0.71vw 0.20vw rgba(255,255,255,0.47),
+        0 0 1.65vw 0.47vw rgba(180,200,255,0.19),
         inset 0 -0.75vw 1.2vw rgba(0,0,0,0.75),
         inset 0 0.28vw 0.45vw rgba(255,255,255,0.4),
-        inset 0 0 1.5vw 0.4vw rgba(200,215,255,0.5);
+        inset 0 0 0.83vw 0.22vw rgba(200,215,255,0.28);
     }
   }
 
@@ -197,11 +156,11 @@
     .glow-btn{
       animation: none;
       box-shadow:
-        0 0 1vw 0.25vw rgba(230,235,255,0.64),
-        0 0 2.29vw 0.64vw rgba(160,180,240,0.23),
+        0 0 0.55vw 0.14vw rgba(230,235,255,0.35),
+        0 0 1.26vw 0.35vw rgba(160,180,240,0.13),
         inset 0 -0.75vw 1.2vw rgba(0,0,0,0.75),
         inset 0 0.28vw 0.45vw rgba(255,255,255,0.4),
-        inset 0 0 1.2vw 0.3vw rgba(180,200,255,0.35);
+        inset 0 0 0.66vw 0.17vw rgba(180,200,255,0.19);
     }
   }
   .glow-btn:focus-visible{
@@ -397,7 +356,6 @@
   <section class="hero">
     <div class="horizon"></div>
     <div class="hero-inner">
-      <div class="hero-rays" id="hero-rays" aria-hidden="true"></div>
       <button class="glow-btn btn-a" aria-label="Explore"></button>
       <button class="glow-btn btn-b" aria-label="Services"></button>
       <a class="glow-btn btn-main" href="https://www.youtube.com/@peaces/videos" target="_blank" rel="noopener noreferrer" aria-label="peaces on YouTube"></a>
@@ -450,39 +408,6 @@
     &copy; 2026 Eclipse Studio. All rights reserved.
   </footer>
 
-  <script>
-    (function(){
-      var container = document.getElementById('hero-rays');
-      if (!container) return;
-
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var count = 28;
-
-      for (var i = 0; i < count; i++){
-        var ray = document.createElement('div');
-        ray.className = 'ray';
-
-        var angle = (360 / count) * i + (Math.random() * 8 - 4);
-        var length = 10 + Math.random() * 22;      // 10vw - 32vw reach
-        var thickness = 0.08 + Math.random() * 0.14; // varied stroke width
-        var minScale = 0.3 + Math.random() * 0.35;   // how far it dims down to
-
-        ray.style.setProperty('--ray-angle', angle.toFixed(2) + 'deg');
-        ray.style.setProperty('--ray-min', minScale.toFixed(2));
-        ray.style.height = length.toFixed(2) + 'vw';
-        ray.style.width = thickness.toFixed(2) + 'vw';
-
-        if (!reduceMotion){
-          var duration = 4 + Math.random() * 5; // 4s - 9s per ray
-          var delay = -(Math.random() * duration); // desync start points
-          ray.style.animationDuration = duration.toFixed(2) + 's';
-          ray.style.animationDelay = delay.toFixed(2) + 's';
-        }
-
-        container.appendChild(ray);
-      }
-    })();
-  </script>
 
 </body>
 </html>
