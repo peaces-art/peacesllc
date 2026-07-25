@@ -245,6 +245,11 @@
     );
     animation: shimmer-spin 16s linear infinite;
     transition: transform .25s ease;
+    /* clip to a disc matching the outer edge of the peace-sign artwork's white ring */
+    -webkit-mask-image: radial-gradient(circle closest-side at center,
+      black 0%, black 82%, transparent 85%);
+    mask-image: radial-gradient(circle closest-side at center,
+      black 0%, black 82%, transparent 85%);
   }
   .btn-main:hover ~ .btn-main-shimmer{
     transform: scale(1.06);
