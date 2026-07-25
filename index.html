@@ -306,9 +306,9 @@
     transition: transform .25s ease;
     /* clip to a disc matching the outer edge of the peace-sign artwork's white ring */
     -webkit-mask-image: radial-gradient(circle closest-side at center,
-      black 0%, black 82%, transparent 85%);
+      black 0%, black 94%, transparent 98%);
     mask-image: radial-gradient(circle closest-side at center,
-      black 0%, black 82%, transparent 85%);
+      black 0%, black 94%, transparent 98%);
   }
   .btn-main:hover ~ .btn-main-shimmer{
     transform: scale(1.06);
@@ -403,6 +403,9 @@
     }
     .btn-main, .btn-main-image, .btn-main-glass, .btn-main-shimmer{
       transform: scale(1.4);
+    }
+    .hero{
+      height: 141.8vw; /* 2x the normal aspect-ratio height; width stays full-screen */
     }
   }
 </style>
