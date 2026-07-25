@@ -117,14 +117,18 @@
     background: radial-gradient(circle at 35% 30%, #0e1120 0%, #06070f 60%, #030308 100%);
     box-shadow:
       0 0 1.4vw 0.35vw rgba(230,235,255,0.9),
-      0 0 3.2vw 0.9vw rgba(160,180,240,0.32);
+      0 0 3.2vw 0.9vw rgba(160,180,240,0.32),
+      inset 0 -0.35vw 0.55vw rgba(0,0,0,0.45),
+      inset 0 0.12vw 0.2vw rgba(255,255,255,0.15);
     transition: transform .25s ease, box-shadow .25s ease;
   }
   .glow-btn:hover{
     transform: scale(1.06);
     box-shadow:
       0 0 1.8vw 0.5vw rgba(255,255,255,1),
-      0 0 4.2vw 1.2vw rgba(170,190,255,0.45);
+      0 0 4.2vw 1.2vw rgba(170,190,255,0.45),
+      inset 0 -0.4vw 0.6vw rgba(0,0,0,0.5),
+      inset 0 0.12vw 0.2vw rgba(255,255,255,0.2);
   }
   .glow-btn:focus-visible{
     outline: 2px solid rgba(255,255,255,0.7);
@@ -318,6 +322,7 @@
   <footer>
     &copy; 2026 Eclipse Studio. All rights reserved.
   </footer>
+
 
 </body>
 </html>
