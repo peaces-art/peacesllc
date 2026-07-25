@@ -112,6 +112,47 @@
     z-index:6;
   }
 
+  /* god-rays radiating from the center button: each ray is an individual
+     stroke with its own randomized length that glows in and out on its own
+     timer, so the burst never looks uniform or fixed. */
+  .hero-rays{
+    position:absolute;
+    left:49.5vw;
+    top:11.65vw;
+    width:0;
+    height:0;
+    pointer-events:none;
+  }
+  .hero-rays .ray{
+    position:absolute;
+    left:0;
+    top:0;
+    transform-origin: 0 0;
+    border-radius:999px;
+    background: linear-gradient(to bottom,
+      rgba(255,255,255,0.65) 0%,
+      rgba(255,255,255,0.18) 55%,
+      rgba(255,255,255,0) 100%);
+    mix-blend-mode: screen;
+    filter: blur(0.15vw);
+    animation-name: ray-glow;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes ray-glow{
+    0%, 100%{ transform: rotate(var(--ray-angle)) scaleY(var(--ray-min)); opacity: 0.3; }
+    50%{ transform: rotate(var(--ray-angle)) scaleY(1); opacity: 0.8; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-rays .ray{
+      animation: none;
+      transform: rotate(var(--ray-angle)) scaleY(0.8);
+      opacity: 0.5;
+    }
+  }
+
   .glow-btn{
     position:absolute;
     border-radius:50%;
@@ -186,6 +227,20 @@
     background:
       radial-gradient(circle at 30% 22%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 46%),
       linear-gradient(160deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.22) 100%);
+  }
+
+  /* left-side buttons (a, b) face the center rays from the left, so their
+     catch-light highlight sits on their right edge; right-side buttons (c, d)
+     get the mirror treatment */
+  .glow-btn.btn-a::after, .glow-btn.btn-b::after{
+    background:
+      radial-gradient(circle at 78% 32%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 48%),
+      linear-gradient(200deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 45%, rgba(255,255,255,0.16) 100%);
+  }
+  .glow-btn.btn-c::after, .glow-btn.btn-d::after{
+    background:
+      radial-gradient(circle at 22% 32%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 48%),
+      linear-gradient(340deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 45%, rgba(255,255,255,0.16) 100%);
   }
 
   .btn-main{
@@ -352,6 +407,7 @@
   <section class="hero">
     <div class="horizon"></div>
     <div class="hero-inner">
+      <div class="hero-rays" id="hero-rays" aria-hidden="true"></div>
       <button class="glow-btn btn-a" aria-label="Explore"></button>
       <button class="glow-btn btn-b" aria-label="Services"></button>
       <a class="glow-btn btn-main" href="https://www.youtube.com/@peaces/videos" target="_blank" rel="noopener noreferrer" aria-label="peaces on YouTube"></a>
@@ -393,6 +449,39 @@
     &copy; 2026 Eclipse Studio. All rights reserved.
   </footer>
 
+  <script>
+    (function(){
+      var container = document.getElementById('hero-rays');
+      if (!container) return;
+
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var count = 28;
+
+      for (var i = 0; i < count; i++){
+        var ray = document.createElement('div');
+        ray.className = 'ray';
+
+        var angle = (360 / count) * i + (Math.random() * 8 - 4);
+        var length = 10 + Math.random() * 22;      // 10vw - 32vw reach
+        var thickness = 0.08 + Math.random() * 0.14; // varied stroke width
+        var minScale = 0.3 + Math.random() * 0.35;   // how far it dims down to
+
+        ray.style.setProperty('--ray-angle', angle.toFixed(2) + 'deg');
+        ray.style.setProperty('--ray-min', minScale.toFixed(2));
+        ray.style.height = length.toFixed(2) + 'vw';
+        ray.style.width = thickness.toFixed(2) + 'vw';
+
+        if (!reduceMotion){
+          var duration = 4 + Math.random() * 5; // 4s - 9s per ray
+          var delay = -(Math.random() * duration); // desync start points
+          ray.style.animationDuration = duration.toFixed(2) + 's';
+          ray.style.animationDelay = delay.toFixed(2) + 's';
+        }
+
+        container.appendChild(ray);
+      }
+    })();
+  </script>
 
 </body>
 </html>
