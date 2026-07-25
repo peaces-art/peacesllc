@@ -14,7 +14,6 @@
     background:#04050b;
     color:var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    overflow-x:hidden;
   }
 
   /* ---------- NAV ---------- */
@@ -396,10 +395,14 @@
 
   @media (max-width: 640px){
     nav.links{ display:none; }
-    .hero{
+    /* bigger, easier-to-tap buttons on small screens; the side buttons have
+       room to double in place, the center group is capped lower so it
+       doesn't clip against the hero's top edge */
+    .btn-a, .btn-b, .btn-c, .btn-d{
       transform: scale(2);
-      transform-origin: 50% 0%;
-      margin-bottom: 70.9vw; /* reserve the extra height the 2x zoom adds below */
+    }
+    .btn-main, .btn-main-image, .btn-main-glass, .btn-main-shimmer{
+      transform: scale(1.4);
     }
   }
 </style>
