@@ -251,6 +251,56 @@
     margin: 0 auto;
   }
 
+  /* ---------- PUZZLE SHOWCASE ---------- */
+  .puzzle-showcase{
+    background:#05060d;
+    padding: 5rem 6vw 6rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .puzzle-showcase h2{
+    font-size: 1.6rem;
+    font-weight:600;
+    margin-bottom: 0.75rem;
+  }
+  .puzzle-showcase p{
+    color: var(--muted);
+    max-width: 34rem;
+    margin-bottom: 3rem;
+    line-height:1.6;
+  }
+  .puzzle-pair{
+    display:flex;
+    align-items:center;
+  }
+  .puzzle-piece{
+    width: min(34vw, 380px);
+    aspect-ratio: 1 / 1;
+    flex: none;
+    margin-top: 3rem; /* room for the top tab poking above the box */
+    filter: drop-shadow(0 0 2.2vw rgba(255,195,110,0.4)) drop-shadow(0 0 4vw rgba(255,150,60,0.2));
+  }
+  .puzzle-piece.piece-a{
+    clip-path: url(#puzzle-clip-a);
+    position:relative;
+    z-index:2; /* its tab renders above the neighboring piece's edge */
+  }
+  .puzzle-piece.piece-b{
+    clip-path: url(#puzzle-clip-b);
+    /* pulls left so piece-a's tab (protruding to local x=1.05) lines up
+       exactly inside piece-b's notch (cut in from local x=0.10 to 0.25) */
+    margin-left: calc(min(34vw, 380px) * -0.2);
+    filter: drop-shadow(0 0 2.2vw rgba(140,220,255,0.35)) drop-shadow(0 0 4vw rgba(90,190,255,0.18));
+  }
+  .puzzle-piece img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
   /* ---------- CONTENT ---------- */
   main{
     background:#05060d;
@@ -306,6 +356,40 @@
 </head>
 <body>
 
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- left piece: tab sticks OUT on the right edge, to plug into the right piece -->
+      <clipPath id="puzzle-clip-a" clipPathUnits="objectBoundingBox">
+        <path d="M0.10,0.10
+                 L0.40,0.10
+                 C0.45,-0.06 0.55,-0.06 0.60,0.10
+                 L0.90,0.10
+                 L0.90,0.40
+                 C1.05,0.45 1.05,0.55 0.90,0.60
+                 L0.90,0.90
+                 L0.10,0.90
+                 Z"/>
+      </clipPath>
+      <!-- right piece: notch cut IN on the left edge, receives the left piece's tab;
+           also keeps a decorative bump on top and notch on the right, implying the
+           puzzle continues beyond this piece -->
+      <clipPath id="puzzle-clip-b" clipPathUnits="objectBoundingBox">
+        <path d="M0.10,0.10
+                 L0.40,0.10
+                 C0.45,-0.06 0.55,-0.06 0.60,0.10
+                 L0.90,0.10
+                 L0.90,0.40
+                 C0.74,0.45 0.74,0.55 0.90,0.60
+                 L0.90,0.90
+                 L0.10,0.90
+                 L0.10,0.60
+                 C0.25,0.55 0.25,0.45 0.10,0.40
+                 L0.10,0.10
+                 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
+
   <header class="site-nav">
     <div class="logo">peaces</div>
   </header>
@@ -322,35 +406,48 @@
       <button class="glow-btn btn-d" aria-label="Contact"></button>
     </div>
     <div class="hero-copy">
-      <h1>peaces.</h1>
-      <p>share your peace, add it to the puzzle</p>
+      <h1>Beyond the horizon</h1>
+      <p>A quiet corner of the dark, lit only by what's about to happen.</p>
+    </div>
+  </section>
+
+  <section class="puzzle-showcase">
+    <h2>The missing piece</h2>
+    <p>Every part finds its place eventually.</p>
+    <div class="puzzle-pair">
+      <div class="puzzle-piece piece-a">
+        <img src="the floating flower.png" alt="A golden lotus flower with a glowing orb floating above a misty lake">
+      </div>
+      <div class="puzzle-piece piece-b">
+        <img src="the garden.png" alt="Bumblebees over a garden fountain with a floating glass orb">
+      </div>
     </div>
   </section>
 
   <main>
     <div class="section-title">What we do</div>
-    <p class="section-sub">Three ways to work with us, each orbiting the same idea: clarity, built slowly, through the dark.</p>
+    <p class="section-sub">Three ways to work with us, each orbiting the same idea: clarity, built slowly, in the dark.</p>
     <div class="card-grid">
       <div class="card">
         <div class="dot"></div>
-        <h3>Peace by Piece</h3>
-        <p>To each their own, unique, story — considered, quiet, and built to last.</p>
+        <h3>Design</h3>
+        <p>Interfaces that feel inevitable — considered, quiet, and built to last.</p>
       </div>
       <div class="card">
         <div class="dot"></div>
-        <h3>Connect</h3>
+        <h3>Strategy</h3>
         <p>Clear thinking before clever execution. We start with the right question.</p>
       </div>
       <div class="card">
         <div class="dot"></div>
-        <h3>share</h3>
-        <p>From concept to shipped product, without losing where you fit in.</p>
+        <h3>Build</h3>
+        <p>From concept to shipped product, without losing the shape of the idea.</p>
       </div>
     </div>
   </main>
 
   <footer>
-    &copy; 2026 peaces studio. All rights reserved.
+    &copy; 2026 Eclipse Studio. All rights reserved.
   </footer>
 
   <script>
