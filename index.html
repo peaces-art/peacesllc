@@ -306,9 +306,9 @@
     transition: transform .25s ease;
     /* clip to a disc matching the outer edge of the peace-sign artwork's white ring */
     -webkit-mask-image: radial-gradient(circle closest-side at center,
-      black 0%, black 94%, transparent 98%);
+      black 0%, black 82%, transparent 85%);
     mask-image: radial-gradient(circle closest-side at center,
-      black 0%, black 94%, transparent 98%);
+      black 0%, black 82%, transparent 85%);
   }
   .btn-main:hover ~ .btn-main-shimmer{
     transform: scale(1.06);
@@ -395,17 +395,8 @@
 
   @media (max-width: 640px){
     nav.links{ display:none; }
-    /* bigger, easier-to-tap buttons on small screens; the side buttons have
-       room to double in place, the center group is capped lower so it
-       doesn't clip against the hero's top edge */
-    .btn-a, .btn-b, .btn-c, .btn-d{
-      transform: scale(2);
-    }
-    .btn-main, .btn-main-image, .btn-main-glass, .btn-main-shimmer{
-      transform: scale(1.4);
-    }
     .hero{
-      height: 141.8vw; /* 2x the normal aspect-ratio height; width stays full-screen */
+      height: 212.7vw; /* 3x the normal aspect-ratio height; width stays full-screen */
     }
   }
 </style>
