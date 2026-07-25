@@ -76,9 +76,29 @@
     top:-258.8vw;
     border-radius:50%;
     background: linear-gradient(to bottom, #1b2140 0%, #232a4d 8%, #262d52 20%, #262c4d 100%);
-    box-shadow:
-      0 0 4vw 0.6vw rgba(210,220,255,0.55),
-      0 0 9vw 1.6vw rgba(150,170,235,0.22);
+    animation: rim-pulse 4.5s ease-in-out infinite;
+  }
+
+  @keyframes rim-pulse{
+    0%, 100%{
+      box-shadow:
+        0 0 2.5vw 0.35vw rgba(220,230,255,0.7),
+        0 0 6vw 1vw rgba(150,170,235,0.15);
+    }
+    50%{
+      box-shadow:
+        0 0 3vw 0.5vw rgba(255,255,255,1),
+        0 0 7vw 1.3vw rgba(180,200,255,0.26);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .horizon{
+      animation: none;
+      box-shadow:
+        0 0 2.5vw 0.35vw rgba(220,230,255,0.7),
+        0 0 6vw 1vw rgba(150,170,235,0.15);
+    }
   }
 
   .hero-inner{
