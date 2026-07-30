@@ -1,0 +1,102 @@
+@import url('../../styles.css');
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);color:var(--text-primary);background:var(--surface-page)}
+a{color:var(--accent-primary-active);text-decoration:none}
+a:hover{color:var(--accent-primary)}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid var(--border-subtle);flex-wrap:wrap;gap:16px}
+.nav-left{display:flex;align-items:center;gap:44px}
+.nav-logo{height:28px;width:auto;object-fit:contain;display:block}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;white-space:nowrap}
+.nav-links a{color:var(--text-secondary);font-size:var(--text-sm);font-weight:600}
+.nav-links a.active,.nav-links a:hover{color:var(--text-primary)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-body);font-weight:600;font-size:var(--text-sm);padding:12px 22px;border-radius:var(--radius-md);border:none;cursor:pointer;transition:background var(--duration-base) var(--ease-standard);white-space:nowrap;flex-shrink:0}
+.btn-primary{background:var(--accent-primary);color:var(--text-on-primary);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5),inset 0 -2px 2px rgba(0,0,0,0.12),inset 1px 0 0 rgba(255,255,255,0.3),inset -1px 0 0 rgba(0,0,0,0.08)}
+.btn-primary:hover{background:var(--accent-primary-hover)}
+.btn-secondary{background:var(--accent-secondary);color:#fff}
+.btn-secondary:hover{background:var(--accent-secondary-hover)}
+.btn-ghost{background:transparent;color:var(--text-primary);border:1px solid var(--border-default)}
+.btn-ghost:hover{background:var(--surface-sunken)}
+.btn-lg{padding:16px 30px;font-size:var(--text-base)}
+.btn-knob{position:relative;overflow:visible}
+.btn-knob::before{content:"";position:absolute;top:50%;left:-3.2px;transform:translateY(-50%);width:15px;height:27px;background:var(--surface-page);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha;z-index:1}
+.btn-knob::after{content:"";position:absolute;top:50%;right:-12.36px;transform:translateY(-50%);width:15px;height:27px;background:var(--accent-primary);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha}
+.btn-knob:hover::after{background:var(--accent-primary-hover)}
+.section{padding:96px 32px}
+.section-tight{padding:64px 32px}
+.eyebrow{font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-primary-active)}
+h1.display{font-family:var(--font-display);font-weight:700;font-size:var(--text-4xl);line-height:var(--leading-tight);color:var(--text-primary);margin:12px 0}
+h2.display{font-family:var(--font-display);font-weight:700;font-size:var(--text-2xl);line-height:var(--leading-tight);color:var(--text-primary);margin:0 0 16px}
+p.lede{font-size:var(--text-md);color:var(--text-secondary);line-height:var(--leading-relaxed);max-width:560px}
+.card{background:var(--surface-card);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:28px}
+.card:hover{box-shadow:var(--shadow-md)}
+.card-bevel{box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,0.6),inset 0 -2px 3px rgba(0,0,0,0.12),inset 1px 0 0 rgba(255,255,255,0.4),inset -1px 0 0 rgba(0,0,0,0.08);border:1px solid var(--border-subtle);position:relative}
+.card-bevel-knob{overflow:visible;--knob-bg:var(--surface-page)}
+.card-bevel-knob::after{content:"";position:absolute;bottom:-3.5px;right:-10.9px;width:45px;height:81px;background:var(--knob-bg);transform:rotate(180deg);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha;filter:drop-shadow(-1px 1px 0 rgba(255,255,255,0.5)) drop-shadow(-2px 2px 2px rgba(0,0,0,0.1))}
+.section-tight[style*="surface-sunken"] .card-bevel-knob,[style*="surface-sunken"] .card-bevel-knob{--knob-bg:var(--surface-sunken)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:var(--text-sm);font-weight:600;color:var(--text-secondary)}
+.field input,.field textarea{font-family:inherit;font-size:var(--text-base);padding:12px 16px;border-radius:var(--radius-md);border:1px solid var(--border-default);background:var(--surface-card);color:var(--text-primary);outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--border-focus);box-shadow:var(--shadow-focus)}
+.badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:700;background:var(--sage-100);color:var(--sage-700)}
+.footer{border-top:1px solid var(--border-subtle);padding:40px 32px;display:flex;align-items:center;justify-content:space-between;color:var(--text-tertiary);font-size:var(--text-sm)}
+.footer-links{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.footer-links a{color:var(--text-tertiary)}
+.piece-card{width:100%;background:var(--surface-card);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,0.6),inset 0 -2px 3px rgba(0,0,0,0.12),inset 1px 0 0 rgba(255,255,255,0.4),inset -1px 0 0 rgba(0,0,0,0.08);border:1px solid var(--border-subtle);overflow:visible;position:relative}
+.piece-card .thumb{height:150px;background:var(--ink-800);display:flex;align-items:center;justify-content:center;color:var(--sand-50);font-size:var(--text-sm);gap:8px;border-radius:0 var(--radius-lg-corner) 0 0;overflow:hidden}
+.piece-card .thumb-line{height:3px;background:var(--clay-500)}
+.play-icon{position:relative;display:inline-block;transition:transform var(--duration-fast) var(--ease-standard);cursor:pointer}
+.play-icon img{display:block;transition:opacity var(--duration-fast) var(--ease-standard)}
+.play-icon .play-icon-hover{position:absolute;inset:0;opacity:0}
+.piece-card:hover .play-icon,.thumb:hover .play-icon,.play-icon:hover{transform:scale(0.92)}
+.piece-card:hover .play-icon .play-icon-hover,.thumb:hover .play-icon .play-icon-hover,.play-icon:hover .play-icon-hover{opacity:1}
+.piece-card:hover .play-icon .play-icon-base,.thumb:hover .play-icon .play-icon-base,.play-icon:hover .play-icon-base{opacity:0}
+.play-icon:active{transform:scale(0.85)}
+.profile-avatar{transition:border-color var(--duration-fast) var(--ease-standard),box-shadow var(--duration-fast) var(--ease-standard)}
+.profile-avatar:hover{border-color:var(--clay-500);box-shadow:0 0 0 2px var(--clay-500)}
+.piece-card .body{border-radius:0 0 0 var(--radius-lg-corner);overflow:hidden}
+.piece-card .body{padding:20px}
+.piece-card .name{font-family:var(--font-display);font-weight:700;font-size:var(--text-md);color:var(--text-primary)}
+.piece-card .craft{color:var(--text-secondary);font-size:var(--text-sm);margin:2px 0 14px}
+.connector{position:absolute;top:75px;right:-20px;transform:translateY(-50%);width:21px;height:38px;background:var(--ink-800);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha;z-index:3}
+.btn-sign-knob{position:relative;overflow:visible}
+.btn-sign-knob::after{content:"";position:absolute;top:50%;left:-2.3px;transform:translateY(-50%);width:15px;height:27px;background:var(--surface-card);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha}
+.btn-sign-knob:hover::after{background:var(--surface-card)}
+.connector-inlet{position:absolute;top:75px;left:-1px;transform:translateY(-50%);width:21px;height:38px;background:var(--surface-page);-webkit-mask-image:url(../../assets/puzzle-knob.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-type:alpha;mask-image:url(../../assets/puzzle-knob.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-type:alpha;z-index:3}
+.theme-toggle{background:transparent;border:1px solid var(--border-default);border-radius:var(--radius-pill);padding:11px 18px;font-family:inherit;font-size:var(--text-sm);font-weight:600;color:var(--text-primary);cursor:pointer;white-space:nowrap;line-height:1}
+.theme-toggle:hover{background:var(--surface-sunken)}
+.hero-night{position:relative;background:radial-gradient(ellipse at 50% 120%,var(--clay-400) 0%,var(--clay-500) 55%,var(--clay-600) 100%);border-radius:0 0 75% 75%/0 0 104px 104px;padding:64px 32px 54px;overflow:visible;text-align:center;box-shadow:inset 0 -6px 10px rgba(0,0,0,0.18),inset 0 -1px 0 rgba(255,255,255,0.25),0 3px 0 rgba(255,255,255,0.55),0 4.5px 5px rgba(0,0,0,0.15)}
+.hero-night::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-6px;top:-6px;border-radius:0 0 75% 75%/0 0 110px 110px;border-bottom:5px solid rgba(255,232,168,0.9);border-left:0;border-right:0;border-top:0;-webkit-mask:radial-gradient(ellipse 60% 100% at 50% 0%,transparent 60%,#000 100%);mask:radial-gradient(ellipse 60% 100% at 50% 0%,transparent 60%,#000 100%);filter:blur(6px) drop-shadow(0 0 17px rgba(255,214,102,0.84));animation:hero-glow-pulse 3.5s ease-in-out infinite;pointer-events:none}
+[data-theme="dark"] .hero-night{background:radial-gradient(ellipse at 50% 120%,#1b2340 0%,#0d1226 55%,#05070f 100%)}
+[data-theme="dark"] .hero-night::after{border-bottom-color:rgba(255,255,255,0.85);filter:blur(6px) drop-shadow(0 0 17px rgba(255,255,255,0.84))}
+@keyframes hero-glow-pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+.hero-night .mark{position:relative;display:inline-block;margin-bottom:8px;z-index:2}
+.hero-night .piece-texture{position:absolute;top:50%;left:50%;width:255px;height:255px;transform:translate(-50%,-50%);object-fit:contain;opacity:0.08;filter:blur(1.5px);pointer-events:none;z-index:1}
+[data-theme="dark"] .hero-night .piece-texture{content:url(../../assets/piece-texture-dark.png);opacity:0.12}
+.hero-night .stars{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;opacity:0}
+[data-theme="dark"] .hero-night .stars{opacity:1}
+.hero-night .stars::before,.hero-night .stars::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 22%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 28% 14%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 42% 30%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 58% 12%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 72% 24%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 86% 16%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 20% 40%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 64% 36%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 90% 34%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 8% 12%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 6% 62%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 18% 72%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 30% 58%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 46% 68%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 60% 60%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 74% 70%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 88% 58%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 94% 74%,#fff 60%,transparent 100%);animation:hero-stars-twinkle 4s ease-in-out infinite}
+.hero-night .stars::after{background-image:radial-gradient(1px 1px at 35% 20%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 50% 28%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 78% 10%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 15% 32%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 95% 22%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 24% 64%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 40% 76%,#fff 60%,transparent 100%),radial-gradient(1.5px 1.5px at 55% 64%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 68% 78%,#fff 60%,transparent 100%),radial-gradient(1px 1px at 82% 66%,#fff 60%,transparent 100%);animation-duration:5.5s;animation-delay:1.2s}
+@keyframes hero-stars-twinkle{0%,100%{opacity:0.35}50%{opacity:0.9}}
+.hero-night .mark img{height:120px;width:auto;object-fit:contain;filter:drop-shadow(0 0 22px rgba(255,255,255,0.55)) drop-shadow(0 0 46px rgba(255,255,255,0.25))}
+.hero-night .glint{position:absolute;width:26px;height:14px;background:#f3f1ea;border-radius:3px;transform:rotate(-32deg);filter:drop-shadow(0 0 10px rgba(255,255,255,0.85))}
+.hero-night .glint.g1{top:38%;left:14%}
+.hero-night .glint.g2{top:52%;left:22%;width:20px;height:11px}
+.hero-night .glint.g3{top:52%;right:22%;width:20px;height:11px}
+.hero-night .glint.g4{top:38%;right:14%}
+.hero-night .buttons{position:absolute;top:34%;left:0;right:0;height:0;pointer-events:none}
+.hero-night .buttons .side{position:absolute;top:0;display:flex;align-items:center;gap:16px}
+.hero-night .buttons .side.left{right:calc(50% + 94px)}
+.hero-night .buttons .side.right{left:calc(50% + 94px)}
+.hero-night .buttons a{pointer-events:auto;background:transparent;border:1px solid rgba(255,255,255,0.4);color:#f4f2ec;padding:11px 20px;font-size:var(--text-sm);font-weight:600;display:inline-block;white-space:nowrap}
+.hero-night .buttons a span{display:inline-block;white-space:nowrap}
+.hero-night .buttons a:hover{background:rgba(255,255,255,0.12);color:#fff}
+.hero-night .buttons .side.left a:first-child{transform:skewX(18deg) translateY(18px)}
+.hero-night .buttons .side.left a:last-child{transform:skewX(18deg) translateY(38px)}
+.hero-night .buttons .side.right a:first-child{transform:skewX(-18deg) translateY(38px)}
+.hero-night .buttons .side.right a:last-child{transform:skewX(-18deg) translateY(18px)}
+.hero-night .buttons .side.left a span{transform:skewX(-18deg)}
+.hero-night .buttons .side.right a span{transform:skewX(18deg)}
